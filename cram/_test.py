@@ -156,6 +156,8 @@ def test(lines, shell='/bin/sh', indent=2, testname=None, env=None,
             out, cmd = line.split(salt, 1)
 
         if out:
+            if out.endswith(b('\r\n')):
+                out = out[0:-2] + b'\n'
             if not out.endswith(b('\n')):
                 out += b(' (no-eol)\n')
 
